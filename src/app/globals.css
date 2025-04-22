@@ -111,22 +111,48 @@ body {
   animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
 }
 
-@keyframes colorStream {
+@keyframes fireworks {
   0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
+    opacity: 1;
+    transform: scale(0);
   }
   100% {
-    background-position: 0% 50%;
+    opacity: 0;
+    transform: scale(5);
   }
 }
 
-.winner-effect {
-  background: linear-gradient(270deg, #FF0000, #FFFF00, #00FF00, #00FFFF, #0000FF, #FF00FF);
-  background-size: 1200% 1200%;
+.fireworks {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
 
-  animation: colorStream 3s ease infinite;
-  z-index: 10; /* Ensure it's above other elements */
+.firework {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0.3rem;
+  height: 0.3rem;
+  border-radius: 50%;
+  background-color: gold;
+  opacity: 0;
+  animation: fireworks 2s ease-out forwards;
+  animation-delay: calc(0.1s * var(--i));
+}
+
+.firework:nth-child(3n+1) {
+  background-color: red;
+}
+
+.firework:nth-child(3n+2) {
+  background-color: lime;
+}
+
+.firework:nth-child(3n+3) {
+  background-color: blue;
 }

@@ -167,7 +167,7 @@ export default function Home() {
     while (newDealerScore < 17 && deck.length > 0) {
       const newCard = deck.pop();
       newDealerHand = [...newDealerHand, newCard];
-      newDealerScore = calculateHandValue(newDealerHand);
+      newDealerScore = calculateHandValue(newDealerScore);
     }
 
     setDealerHand(newDealerHand);
@@ -202,7 +202,11 @@ export default function Home() {
   return (
     <main className={`flex flex-col min-h-screen bg-[url('/background.jpg')] bg-cover bg-center text-white p-4 items-center ${shakeScreen ? 'shake' : ''}`}>
       {winnerEffect && (
-        <div className="winner-effect absolute inset-0 pointer-events-none"></div>
+        <div className="fireworks absolute inset-0 pointer-events-none">
+          {[...Array(100)].map((_, i) => (
+            <div key={i} className="firework"></div>
+          ))}
+        </div>
       )}
       <h1 className="text-4xl font-bold mb-4 text-[#FFD700]">Blackjack Ace</h1>
 
@@ -210,7 +214,7 @@ export default function Home() {
         <p className="text-lg">Status: {gameStatus}</p>
       </div>
 
-      <div className="flex justify-around w-full mb-4">
+      <div className="flex justify-around w-full mb-4 relative z-10">
         <div>
           <h2 className="text-xl mb-2">Player Hand ({playerScore}):</h2>
           <div className="flex">
@@ -240,7 +244,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="flex justify-center space-x-4">
+      <div className="flex justify-center space-x-4 relative z-10">
         <Button variant="secondary" className="hover:bg-secondary/80 transition-colors duration-200" onClick={dealInitialHands} disabled={isGameActive}>Deal</Button>
         <Button className="hover:bg-primary/80 transition-colors duration-200" onClick={handleHit} disabled={!isGameActive}>Hit</Button>
         <Button className="hover:bg-primary/80 transition-colors duration-200" onClick={handleStand} disabled={!isGameActive}>Stand</Button>
