@@ -10,27 +10,26 @@ const values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"
 // Card image URLs (replace with actual URLs)
 const cardImages = {
   "hearts": {
-    "A": "/cards/hearts_A.png", "2": "/cards/hearts_2.png", "3": "/cards/hearts_3.png", "4": "/cards/hearts_4.png", "5": "/cards/hearts_5.png",
-    "6": "/cards/hearts_6.png", "7": "/cards/hearts_7.png", "8": "/cards/hearts_8.png", "9": "/cards/hearts_9.png", "10": "/cards/hearts_10.png",
-    "J": "/cards/hearts_J.png", "Q": "/cards/hearts_Q.png", "K": "/cards/hearts_K.png",
+    "A": "/cards/ace_of_hearts.png", "2": "/cards/2_of_hearts.png", "3": "/cards/3_of_hearts.png", "4": "/cards/4_of_hearts.png", "5": "/cards/5_of_hearts.png",
+    "6": "/cards/6_of_hearts.png", "7": "/cards/7_of_hearts.png", "8": "/cards/8_of_hearts.png", "9": "/cards/9_of_hearts.png", "10": "/cards/10_of_hearts.png",
+    "J": "/cards/jack_of_hearts.png", "Q": "/cards/queen_of_hearts.png", "K": "/cards/king_of_hearts.png",
   },
   "diamonds": {
-    "A": "/cards/diamonds_A.png", "2": "/cards/diamonds_2.png", "3": "/cards/diamonds_3.png", "4": "/cards/diamonds_4.png", "5": "/cards/diamonds_5.png",
-    "6": "/cards/diamonds_6.png", "7": "/cards/diamonds_7.png", "8": "/cards/diamonds_8.png", "9": "/cards/diamonds_9.png", "10": "/cards/diamonds_10.png",
-    "J": "/cards/diamonds_J.png", "Q": "/cards/diamonds_Q.png", "K": "/cards/diamonds_K.png",
+    "A": "/cards/ace_of_diamonds.png", "2": "/cards/2_of_diamonds.png", "3": "/cards/3_of_diamonds.png", "4": "/cards/4_of_diamonds.png", "5": "/cards/5_of_diamonds.png",
+    "6": "/cards/6_of_diamonds.png", "7": "/cards/7_of_diamonds.png", "8": "/cards/8_of_diamonds.png", "9": "/cards/9_of_diamonds.png", "10": "/cards/10_of_diamonds.png",
+    "J": "/cards/jack_of_diamonds.png", "Q": "/cards/queen_of_diamonds.png", "K": "/cards/king_of_diamonds.png",
   },
   "clubs": {
-    "A": "/cards/clubs_A.png", "2": "/cards/clubs_2.png", "3": "/cards/clubs_3.png", "4": "/cards/clubs_4.png", "5": "/cards/clubs_5.png",
-    "6": "/cards/clubs_6.png", "7": "/cards/clubs_7.png", "8": "/cards/clubs_8.png", "9": "/cards/clubs_9.png", "10": "/cards/clubs_10.png",
-    "J": "/cards/clubs_J.png", "Q": "/cards/clubs_Q.png", "K": "/cards/clubs_K.png",
+    "A": "/cards/ace_of_clubs.png", "2": "/cards/2_of_clubs.png", "3": "/cards/3_of_clubs.png", "4": "/cards/4_of_clubs.png", "5": "/cards/5_of_clubs.png",
+    "6": "/cards/6_of_clubs.png", "7": "/cards/7_of_clubs.png", "8": "/cards/8_of_clubs.png", "9": "/cards/9_of_clubs.png", "10": "/cards/10_of_clubs.png",
+    "J": "/cards/jack_of_clubs.png", "Q": "/cards/queen_of_clubs.png", "K": "/cards/king_of_clubs.png",
   },
   "spades": {
-    "A": "/cards/spades_A.png", "2": "/cards/spades_2.png", "3": "/cards/spades_3.png", "4": "/cards/spades_4.png", "5": "/cards/spades_5.png",
-    "6": "/cards/spades_6.png", "7": "/cards/spades_7.png", "8": "/cards/spades_8.png", "9": "/cards/spades_9.png", "10": "/cards/spades_10.png",
-    "J": "/cards/spades_J.png", "Q": "/cards/spades_Q.png", "K": "/cards/spades_K.png",
+    "A": "/cards/ace_of_spades.png", "2": "/cards/2_of_spades.png", "3": "/cards/3_of_spades.png", "4": "/cards/4_of_spades.png", "5": "/cards/5_of_spades.png",
+    "6": "/cards/6_of_spades.png", "7": "/cards/7_of_spades.png", "8": "/cards/8_of_spades.png", "9": "/cards/9_of_spades.png", "10": "/cards/10_of_spades.png",
+    "J": "/cards/jack_of_spades.png", "Q": "/cards/queen_of_spades.png", "K": "/cards/king_of_spades.png",
   },
 };
-
 
 // Function to create a standard 52-card deck
 const createDeck = () => {
@@ -176,7 +175,7 @@ export default function Home() {
   };
 
   return (
-    <main className="flex flex-col min-h-screen bg-[url('/casino-table-background.jpg')] bg-cover bg-center text-white p-4 items-center">
+    <main className="flex flex-col min-h-screen bg-[url('/background.jpg')] bg-cover bg-center text-white p-4 items-center ">
       <h1 className="text-4xl font-bold mb-4 text-[#FFD700]">Blackjack Ace</h1>
 
       <div className="mb-4">
@@ -214,10 +213,10 @@ export default function Home() {
       </div>
 
       <div className="flex justify-center space-x-4">
-        <Button variant="secondary" onClick={dealInitialHands} disabled={isGameActive}>Deal</Button>
-        <Button onClick={handleHit} disabled={!isGameActive}>Hit</Button>
-        <Button onClick={handleStand} disabled={!isGameActive}>Stand</Button>
-        <Button variant="destructive" onClick={resetGame}>Reset</Button>
+        <Button variant="secondary" className="hover:bg-secondary/80 transition-colors duration-200" onClick={dealInitialHands} disabled={isGameActive}>Deal</Button>
+        <Button className="hover:bg-primary/80 transition-colors duration-200" onClick={handleHit} disabled={!isGameActive}>Hit</Button>
+        <Button className="hover:bg-primary/80 transition-colors duration-200" onClick={handleStand} disabled={!isGameActive}>Stand</Button>
+        <Button variant="destructive" className="hover:bg-destructive/80 transition-colors duration-200" onClick={resetGame}>Reset</Button>
       </div>
     </main>
   );
