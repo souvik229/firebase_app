@@ -251,11 +251,12 @@ export default function Home() {
       </div>
 
       <div className="flex justify-center space-x-4 relative z-10">
-        <Button variant="secondary" className="hover:bg-secondary/80 transition-colors duration-200" onClick={dealInitialHands} disabled={isGameActive}>Deal</Button>
-        <Button className="hover:bg-primary/80 transition-colors duration-200" onClick={handleHit} disabled={!isGameActive}>Hit</Button>
-        <Button className="hover:bg-primary/80 transition-colors duration-200" onClick={handleStand} disabled={!isGameActive}>Stand</Button>
-        <Button variant="destructive" className="hover:bg-destructive/80 transition-colors duration-200" onClick={resetGame}>Reset</Button>
+        <Button variant="secondary" className="deal-button hover:scale-105 transition-transform duration-200" onClick={dealInitialHands} disabled={isGameActive}>Deal</Button>
+        <Button className="hit-button hover:scale-105 transition-transform duration-200" onClick={handleHit} disabled={!isGameActive}>Hit</Button>
+        <Button className="stand-button hover:scale-105 transition-transform duration-200" onClick={handleStand} disabled={!isGameActive}>Stand</Button>
+        <Button variant="destructive" className="reset-button hover:scale-105 transition-transform duration-200" onClick={resetGame}>Reset</Button>
       </div>
     </main>
   );
 }
+

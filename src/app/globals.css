@@ -156,3 +156,40 @@ body {
 .firework:nth-child(3n+3) {
   background-color: blue;
 }
+
+@keyframes border-rotate {
+  0% {
+    border-image-source: conic-gradient(
+      #FF0000,
+      #FF7F00,
+      #FFFF00,
+      #00FF00,
+      #0000FF,
+      #4B0082,
+      #8B00FF,
+      #FF0000
+    );
+    border-image-slice: 1;
+  }
+  100% {
+    border-image-source: conic-gradient(
+      #FF0000,
+      #FF7F00,
+      #FFFF00,
+      #00FF00,
+      #0000FF,
+      #4B0082,
+      #8B00FF,
+      #FF0000
+    );
+    border-image-slice: 1;
+    transform: rotate(360deg);
+  }
+}
+
+.deal-button:hover,
+.hit-button:hover,
+.stand-button:hover,
+.reset-button:hover {
+  animation: border-rotate 2s linear infinite;
+}
