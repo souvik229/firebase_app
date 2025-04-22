@@ -53,9 +53,8 @@ const calculateHandValue = (hand) => {
 
 // Function to get the image URL for a card
 const getCardImage = (card) => {
-  const suit = card.suit;
-  const value = card.value;
-  return `/cards/${value}_of_${suit}.png`;
+  // Use a placeholder image URL since actual card images are not available.
+  return `https://picsum.photos/100/150?random=${card.value}_${card.suit}`;
 };
 
 
@@ -199,4 +198,3 @@ export default function Home() {
     </main>
   );
 }
-
