@@ -220,8 +220,9 @@ export default function Home() {
         <p className="text-lg">Status: {gameStatus}</p>
       </div>
 
-      <div className="flex justify-around w-full mb-4 relative z-10">
-        <div>
+      <div className="relative z-10 flex flex-col items-center w-full mb-4">
+        {/* Player Hand */}
+        <div className="mb-4">
           <h2 className="text-xl mb-2">Player Hand ({playerScore}):</h2>
           <div className="flex">
             {playerHand.map((card, index) => (
@@ -235,6 +236,7 @@ export default function Home() {
           </div>
         </div>
 
+        {/* Dealer Hand */}
         <div>
           <h2 className="text-xl mb-2">Dealer Hand ({dealerScore}):</h2>
           <div className="flex">
@@ -250,6 +252,7 @@ export default function Home() {
         </div>
       </div>
 
+      {/* Action Buttons */}
       <div className="flex justify-center space-x-4 relative z-10">
         <Button variant="secondary" className="deal-button hover:scale-105 transition-transform duration-200" onClick={dealInitialHands} disabled={isGameActive}>Deal</Button>
         <Button className="hit-button hover:scale-105 transition-transform duration-200" onClick={handleHit} disabled={!isGameActive}>Hit</Button>
@@ -259,4 +262,3 @@ export default function Home() {
     </main>
   );
 }
-
