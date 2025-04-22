@@ -7,6 +7,31 @@ import { Button } from "@/components/ui/button"
 const suits = ["hearts", "diamonds", "clubs", "spades"];
 const values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
 
+// Card image URLs (replace with actual URLs)
+const cardImages = {
+  "hearts": {
+    "A": "/cards/hearts_A.png", "2": "/cards/hearts_2.png", "3": "/cards/hearts_3.png", "4": "/cards/hearts_4.png", "5": "/cards/hearts_5.png",
+    "6": "/cards/hearts_6.png", "7": "/cards/hearts_7.png", "8": "/cards/hearts_8.png", "9": "/cards/hearts_9.png", "10": "/cards/hearts_10.png",
+    "J": "/cards/hearts_J.png", "Q": "/cards/hearts_Q.png", "K": "/cards/hearts_K.png",
+  },
+  "diamonds": {
+    "A": "/cards/diamonds_A.png", "2": "/cards/diamonds_2.png", "3": "/cards/diamonds_3.png", "4": "/cards/diamonds_4.png", "5": "/cards/diamonds_5.png",
+    "6": "/cards/diamonds_6.png", "7": "/cards/diamonds_7.png", "8": "/cards/diamonds_8.png", "9": "/cards/diamonds_9.png", "10": "/cards/diamonds_10.png",
+    "J": "/cards/diamonds_J.png", "Q": "/cards/diamonds_Q.png", "K": "/cards/diamonds_K.png",
+  },
+  "clubs": {
+    "A": "/cards/clubs_A.png", "2": "/cards/clubs_2.png", "3": "/cards/clubs_3.png", "4": "/cards/clubs_4.png", "5": "/cards/clubs_5.png",
+    "6": "/cards/clubs_6.png", "7": "/cards/clubs_7.png", "8": "/cards/clubs_8.png", "9": "/cards/clubs_9.png", "10": "/cards/clubs_10.png",
+    "J": "/cards/clubs_J.png", "Q": "/cards/clubs_Q.png", "K": "/cards/clubs_K.png",
+  },
+  "spades": {
+    "A": "/cards/spades_A.png", "2": "/cards/spades_2.png", "3": "/cards/spades_3.png", "4": "/cards/spades_4.png", "5": "/cards/spades_5.png",
+    "6": "/cards/spades_6.png", "7": "/cards/spades_7.png", "8": "/cards/spades_8.png", "9": "/cards/spades_9.png", "10": "/cards/spades_10.png",
+    "J": "/cards/spades_J.png", "Q": "/cards/spades_Q.png", "K": "/cards/spades_K.png",
+  },
+};
+
+
 // Function to create a standard 52-card deck
 const createDeck = () => {
   const deck = [];
@@ -53,8 +78,7 @@ const calculateHandValue = (hand) => {
 
 // Function to get the image URL for a card
 const getCardImage = (card) => {
-  // Use a placeholder image URL since actual card images are not available.
-  return `https://picsum.photos/100/150?random=${card.value}_${card.suit}`;
+  return cardImages[card.suit][card.value];
 };
 
 
@@ -152,7 +176,7 @@ export default function Home() {
   };
 
   return (
-    <main className="flex flex-col min-h-screen bg-[url('/casino-background.jpg')] bg-cover bg-center text-white p-4 items-center">
+    <main className="flex flex-col min-h-screen bg-[url('/casino-table-background.jpg')] bg-cover bg-center text-white p-4 items-center">
       <h1 className="text-4xl font-bold mb-4 text-[#FFD700]">Blackjack Ace</h1>
 
       <div className="mb-4">
