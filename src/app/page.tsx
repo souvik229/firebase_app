@@ -89,10 +89,31 @@ export default function Home() {
   const [playerScore, setPlayerScore] = useState(0);
   const [dealerScore, setDealerScore] = useState(0);
   const [isGameActive, setIsGameActive] = useState(false); // Track if a game is currently active
+  const [shakeScreen, setShakeScreen] = useState(false);
+  const [winnerEffect, setWinnerEffect] = useState(false);
+
 
   useEffect(() => {
     resetGame();
   }, []);
+
+  useEffect(() => {
+    if (shakeScreen) {
+      const timer = setTimeout(() => {
+        setShakeScreen(false);
+      }, 500); // Duration of the shake effect
+      return () => clearTimeout(timer);
+    }
+  }, [shakeScreen]);
+
+    useEffect(() => {
+    if (winnerEffect) {
+      const timer = setTimeout(() => {
+        setWinnerEffect(false);
+      }, 3000); // Duration of the winner effect
+      return () => clearTimeout(timer);
+    }
+  }, [winnerEffect]);
 
   // Function to deal initial hands
   const dealInitialHands = () => {
@@ -128,6 +149,7 @@ export default function Home() {
       if (newScore > 21) {
         setGameStatus("Bust! You lose.");
         setIsGameActive(false);
+        setShakeScreen(true);
       }
     } else {
       setGameStatus("No more cards in the deck.");
@@ -154,10 +176,13 @@ export default function Home() {
     // Determine the winner
     if (newDealerScore > 21) {
       setGameStatus("Dealer busts! You win!");
+      setWinnerEffect(true);
     } else if (newDealerScore >= playerScore) {
       setGameStatus("Dealer wins!");
+      setShakeScreen(true);
     } else {
       setGameStatus("You win!");
+      setWinnerEffect(true);
     }
     setIsGameActive(false);
   };
@@ -175,7 +200,10 @@ export default function Home() {
   };
 
   return (
-    <main className="flex flex-col min-h-screen bg-[url('/background.jpg')] bg-cover bg-center text-white p-4 items-center ">
+    <main className={`flex flex-col min-h-screen bg-[url('/background.jpg')] bg-cover bg-center text-white p-4 items-center ${shakeScreen ? 'shake' : ''}`}>
+      {winnerEffect && (
+        <div className="winner-effect absolute inset-0 pointer-events-none"></div>
+      )}
       <h1 className="text-4xl font-bold mb-4 text-[#FFD700]">Blackjack Ace</h1>
 
       <div className="mb-4">
@@ -191,7 +219,7 @@ export default function Home() {
                 key={index}
                 src={getCardImage(card)}
                 alt={`${card.value} of ${card.suit}`}
-                className="mr-2 h-32"
+                className="mr-2 h-32 rounded-md"
               />
             ))}
           </div>
@@ -205,7 +233,7 @@ export default function Home() {
                 key={index}
                 src={getCardImage(card)}
                 alt={`${card.value} of ${card.suit}`}
-                className="mr-2 h-32"
+                className="mr-2 h-32 rounded-md"
               />
             ))}
           </div>
