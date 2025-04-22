@@ -64,6 +64,8 @@ const calculateHandValue = (hand) => {
       } else {
         value = 10; // Face cards are 10
       }
+    } else {
+      value = value;
     }
     total += value;
   }
@@ -160,14 +162,18 @@ export default function Home() {
   const handleStand = () => {
     if (!isGameActive) return; // Prevent standing when game is not active
 
+    setIsGameActive(false); // Player is done, so the game is no longer active for the player
+
     let newDealerHand = [...dealerHand];
-    let newDealerScore = dealerScore;
+    let newDealerScore = calculateHandValue(newDealerHand);
 
     // Dealer AI: Dealer hits until hand value is 17 or more
     while (newDealerScore < 17 && deck.length > 0) {
       const newCard = deck.pop();
       newDealerHand = [...newDealerHand, newCard];
-      newDealerScore = calculateHandValue(newDealerScore);
+      newDealerScore = calculateHandValue(newDealerHand);
+      setDealerHand(newDealerHand);
+      setDealerScore(newDealerScore);
     }
 
     setDealerHand(newDealerHand);
@@ -253,4 +259,3 @@ export default function Home() {
     </main>
   );
 }
-
