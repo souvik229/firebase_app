@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState, useEffect } from 'react';
@@ -51,6 +50,14 @@ const calculateHandValue = (hand) => {
   }
   return total;
 };
+
+// Function to get the image URL for a card
+const getCardImage = (card) => {
+  const suit = card.suit;
+  const value = card.value;
+  return `/cards/${value}_of_${suit}.png`;
+};
+
 
 export default function Home() {
   const [deck, setDeck] = useState([]);
@@ -146,7 +153,7 @@ export default function Home() {
   };
 
   return (
-    <main className="flex flex-col min-h-screen bg-[#006400] text-white p-4 items-center">
+    <main className="flex flex-col min-h-screen bg-[url('/casino-background.jpg')] bg-cover bg-center text-white p-4 items-center">
       <h1 className="text-4xl font-bold mb-4 text-[#FFD700]">Blackjack Ace</h1>
 
       <div className="mb-4">
@@ -158,9 +165,12 @@ export default function Home() {
           <h2 className="text-xl mb-2">Player Hand ({playerScore}):</h2>
           <div className="flex">
             {playerHand.map((card, index) => (
-              <div key={index} className="mr-2 p-2 border rounded bg-white text-black">
-                {card.value} of {card.suit}
-              </div>
+              <img
+                key={index}
+                src={getCardImage(card)}
+                alt={`${card.value} of ${card.suit}`}
+                className="mr-2 h-32"
+              />
             ))}
           </div>
         </div>
@@ -169,9 +179,12 @@ export default function Home() {
           <h2 className="text-xl mb-2">Dealer Hand ({dealerScore}):</h2>
           <div className="flex">
             {dealerHand.map((card, index) => (
-              <div key={index} className="mr-2 p-2 border rounded bg-white text-black">
-                {card.value} of {card.suit}
-              </div>
+              <img
+                key={index}
+                src={getCardImage(card)}
+                alt={`${card.value} of ${card.suit}`}
+                className="mr-2 h-32"
+              />
             ))}
           </div>
         </div>
