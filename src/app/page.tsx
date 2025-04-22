@@ -201,13 +201,13 @@ export default function Home() {
 
   return (
     <main className={`flex flex-col min-h-screen bg-[url('/background.jpg')] bg-cover bg-center text-white p-4 items-center ${shakeScreen ? 'shake' : ''}`}>
-      {winnerEffect && (
-        <div className="fireworks absolute inset-0 pointer-events-none">
+      
+        <div className="fireworks absolute inset-0 z-1 pointer-events-none">
           {[...Array(100)].map((_, i) => (
             <div key={i} className="firework"></div>
           ))}
         </div>
-      )}
+      
       <h1 className="text-4xl font-bold mb-4 text-[#FFD700]">Blackjack Ace</h1>
 
       <div className="mb-4">
@@ -253,3 +253,4 @@ export default function Home() {
     </main>
   );
 }
+
