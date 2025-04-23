@@ -87,7 +87,7 @@ body {
   }
   body {
     @apply text-foreground;
-    background: url('../public/background/background.jpg');
+    background: url('/background/background.jpg');
     background-size: cover;
   }
 }
