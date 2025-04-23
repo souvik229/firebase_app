@@ -203,7 +203,7 @@ export default function Home(): JSX.Element {
   };
 
   return (
-    <main className={`flex flex-col min-h-screen bg-[url('/background.jpg')] bg-cover bg-center text-white p-4 items-center ${shakeScreen ? 'shake' : ''}`}> {/* Dynamic class based on shakeScreen */}
+    <main className={`flex flex-col min-h-screen bg-[url('./background.jpg')] bg-cover bg-center text-white p-4 items-center ${shakeScreen ? 'shake' : ''}`}> {/* Dynamic class based on shakeScreen */}
       
         <div className="fireworks absolute inset-0 z-1 pointer-events-none">
           {[...Array(100)].map((_, i: number) => (
