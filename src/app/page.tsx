@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
+import backgroundImage from "../../public/background/background.jpg";
 
 // Define card types
 type Suit = "hearts" | "diamonds" | "clubs" | "spades";
@@ -203,7 +204,15 @@ export default function Home(): JSX.Element {
   };
 
   return (
-    <main className={`flex flex-col min-h-screen bg-[url('/background.jpg')] bg-cover bg-center text-white p-4 items-center ${shakeScreen ? 'shake' : ''}`}> {/* Dynamic class based on shakeScreen */}
+    <main className={`relative flex flex-col min-h-screen text-white p-4 items-center ${shakeScreen ? 'shake' : ''}`}>
+      {/* Background Image */}
+      <img
+        src={backgroundImage.src}
+        alt="Background"
+        className="absolute inset-0 -z-10 h-screen w-screen object-cover object-center"
+        style={{ filter: "brightness(80%)" }}
+      />
+      {/* Dynamic class based on shakeScreen */}
       
         <div className="fireworks absolute inset-0 z-1 pointer-events-none">
           {[...Array(100)].map((_, i: number) => (
