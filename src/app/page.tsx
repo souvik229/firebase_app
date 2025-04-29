@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useEffect } from 'react';
-import { Button } from "@/components/ui/button";
+import { useEffect, useState } from 'react';
+import Confetti from 'react-confetti';
+
 import backgroundImage from "../../public/background/background.jpg";
 
 // Define card types
@@ -14,7 +15,7 @@ interface Card {
 }
 
 type GameStatus = "Welcome to Blackjack!" | "Player's turn. Hit or Stand?" | "Bust! You lose." | "Not enough cards in the deck. Please reset the game." | "No more cards in the deck." | "Dealer busts! You win!" | "Dealer wins!" | "You win!" | "Welcome to Blackjack! Press 'Deal' to start.";
-
+import { Button } from "@/components/ui/button";
 
 
 // Define card suits and values explicitly
@@ -33,7 +34,7 @@ const cardImages: { [key in Suit]: { [key in Value]: string } } = {
 const createDeck = (): Card[] => {
   const deck: Card[] = [];
   for (const suit of suits) {
-    for (const value of values) {
+     for (const value of values) {
       deck.push({ suit, value }); // Add explicit type here
     }
   }
@@ -105,12 +106,9 @@ export default function Home(): JSX.Element {
     }
   }, [shakeScreen]);
 
-  // Winner effect
   useEffect(() => {
     if (winnerEffect) {
-      const timer: NodeJS.Timeout = setTimeout(() => {
-        setWinnerEffect(false);
-      }, 3000);
+      const timer = setTimeout(() => setWinnerEffect(false), 3000);
       return () => clearTimeout(timer);
     }
   }, [winnerEffect]);
@@ -180,7 +178,9 @@ export default function Home(): JSX.Element {
     // Determine the winner
     if (newDealerScore > 21) {
       setGameStatus("Dealer busts! You win!"); // Dealer busts, player wins
+      
       setWinnerEffect(true);
+
     } else if (newDealerScore >= playerScore) {
       setGameStatus("Dealer wins!"); // Dealer wins or ties
       setShakeScreen(true);
@@ -201,10 +201,15 @@ export default function Home(): JSX.Element {
     setPlayerScore(0);
     setDealerScore(0);
     setIsGameActive(false);
+    setWinnerEffect(false);
   };
 
   return (
-    <main className={`relative flex flex-col min-h-screen text-white p-4 items-center ${shakeScreen ? 'shake' : ''}`}>
+    <main
+      className={`relative flex flex-col min-h-screen text-white p-4 items-center ${
+        shakeScreen ? "shake" : ""
+      }`}
+    >
       {/* Background Image */}
       <img
         src={backgroundImage.src}
@@ -213,15 +218,23 @@ export default function Home(): JSX.Element {
         style={{ filter: "brightness(80%)" }}
       />
       {/* Dynamic class based on shakeScreen */}
-      
-        <div className="fireworks absolute inset-0 z-1 pointer-events-none">
-          {[...Array(100)].map((_, i: number) => (
-            <div key={i} className="firework"></div>
-          ))} {/* Create 100 firework divs */}
-        </div>
-      
-      <h1 className="text-4xl font-bold mb-4 text-[#FFD700]">Blackjack Ace</h1>
+      {winnerEffect && (
+        <div className="absolute top-0 left-0 w-full h-full z-20 pointer-events-none">
 
+          <div className={`absolute top-0 left-0 w-full h-full z-20 pointer-events-none ${winnerEffect ? '' : 'hidden'}`} />
+          <Confetti
+            width={window.innerWidth}
+            height={window.innerHeight}
+            recycle={false}
+            numberOfPieces={1000}
+          />
+
+        </div>
+      )}
+      
+
+      <h1 className="text-4xl font-bold mb-4 text-[#FFD700]">Blackjack Ace</h1>
+      
       <div className="mb-4">
         <p className="text-lg">Status: {gameStatus}</p>
       </div>
@@ -231,10 +244,10 @@ export default function Home(): JSX.Element {
         <div className="mb-4">
           <h2 className="text-xl mb-2">Player Hand ({playerScore}):</h2>
           <div className="flex"> {/* Container for player's cards */}
-            {playerHand.map((card, index) => (
+           {playerHand.map((card, index) => (
               <img
-                key={index}
-                src={getCardImage(card)}
+                 key={index}
+                 src={getCardImage(card)}
                 alt={`${card.value} of ${card.suit}`}
                 className="mr-2 h-32 rounded-md"
               />
@@ -248,7 +261,7 @@ export default function Home(): JSX.Element {
           <div className="flex"> {/* Container for dealer's cards */}
             {dealerHand.map((card, index) => (
               <img
-                key={index}
+                key={index} 
                 src={getCardImage(card)}
                 alt={`${card.value} of ${card.suit}`}
                 className="mr-2 h-32 rounded-md"
