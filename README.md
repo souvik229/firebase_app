@@ -9,7 +9,7 @@
 
 Welcome to **Firebase Studio** — a Next.js starter project designed to research the firebase studio environment.
 
-🔗 **Deployed Project:** [Explore Firebase Studio](https://souvik229.github.io/firebase_app/)
+🔗 **Deployed Project:** [Black Jack Ace](https://souvik229.github.io/firebase_app/)
 
 ---
 
