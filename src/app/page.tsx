@@ -108,7 +108,7 @@ export default function Home(): JSX.Element {
 
   useEffect(() => {
     if (winnerEffect) {
-      const timer = setTimeout(() => setWinnerEffect(false), 3000);
+      const timer = setTimeout(() => setWinnerEffect(false), 5000);
       return () => clearTimeout(timer);
     }
   }, [winnerEffect]);
